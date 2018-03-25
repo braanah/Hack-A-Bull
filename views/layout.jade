@@ -11,6 +11,10 @@ html
       // Disable Facebook Button
       let fbButton = document.getElementById("fb_button");
       fbButton.disable = true;
+
+      let googleButton = document.getElementById("google_button");
+      googleButton.disable = true;
+
       function initApplication() {
         console.log("Initted..");
         return stitch.StitchClientFactory.create('dontdoit-ntrbu').then(client => {
@@ -23,11 +27,17 @@ html
               document.getElementById("photo").innerHTML = "<img src=" + data.data.picture + " alt='That's you!>";
             });
           }
-          else fbButton.disable = false;
+          else 
+            fbButton.disable = false;
+            googleButton.diable = false;
         });
       }
 
       function AuthFacebook() {
         stitchClient.authenticate("facebook");
+      }
+
+      function AuthGoogle() {
+        stitchClient.authenticate("google");
       }
     
