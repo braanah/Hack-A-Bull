@@ -16,7 +16,12 @@ html
         return stitch.StitchClientFactory.create('dontdoit-ntrbu').then(client => {
           stitchClient = client;
         }).then(() => {
-          fbButton.disable = false;
+          if (stitchClient.isAuthenticated()) {
+            stitchClient.userProfile().then((data) => {
+              console.log(data);
+            });
+          }
+          else fbButton.disable = false;
         });
       }
 
