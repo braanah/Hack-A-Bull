@@ -2,3 +2,30 @@ extends layout
 
 block content
   h1 DON'T DO IT!
+
+
+  script(src="/javascripts/stitch.min.js") 
+  script.
+
+    const clientPromise = stitch.StitchClientFactory.create('dontdoit-ntrbu');
+    clientPromise.then(client => {
+      const db = client.service('mongodb', 'mongodb-atlas').db('DontDoIt');
+      client.login().then(() =>
+        db.collection('users').updateOne({owner_id: client.authedId()}, {$set:{number:42}}, {upsert:true})
+      ).then(()=>
+        db.collection('users').find({owner_id: client.authedId()}).limit(100).execute()
+      ).then(docs => {
+        console.log("Found docs", docs)
+        console.log("[MongoDB Stitch] Connected to Stitch")
+      }).catch(err => {
+        console.error(err)
+      });
+    });
+    let stitchClient;
+    function initApplication() {
+      return stitch.StitchClientFactory.create('dontdoit-ntrbu').then(client => {
+        stitchClient = client;
+      }).then(() => {
+        stitchClient.authenticate("facebook");
+      });
+    }
