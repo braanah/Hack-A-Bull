@@ -18,7 +18,9 @@ html
         }).then(() => {
           if (stitchClient.isAuthenticated()) {
             stitchClient.userProfile().then((data) => {
-              console.log(data);
+              document.getElementById("fname").innerHTML = data.data.first_name;
+              document.getElementById("lname").innerHTML = data.data.last_name;
+              document.getElementById("photo").innerHTML = "<img src=" + data.data.picture + " alt='That's you!>";
             });
           }
           else fbButton.disable = false;
