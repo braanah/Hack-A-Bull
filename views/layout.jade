@@ -4,6 +4,8 @@ html
     title=title
     link(rel='stylesheet', href='/stylesheets/style.css')
     script(src="/javascripts/stitch.min.js") 
+  body(onload="initApplication()")
+    block content
     script.
       let stitchClient;
       
@@ -18,6 +20,4 @@ html
       function AuthFacebook() {
         stitchClient.authenticate("facebook");
       }
-  body(onload="initApplication()")
-    block content
     
