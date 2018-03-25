@@ -1,7 +1,7 @@
 doctype html
 html
   head
-    title= title
+    title=title
     link(rel='stylesheet', href='/stylesheets/style.css')
   body(onload="initApplication()")
     block content
@@ -14,7 +14,7 @@ html
         return stitch.StitchClientFactory.create('dontdoit-ntrbu').then(client => {
           stitchClient = client;
         }).then(() => {
-          
+
       }
 
       function AuthFacebook() {
