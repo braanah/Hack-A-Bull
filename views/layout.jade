@@ -8,11 +8,16 @@ html
     script(src="/javascripts/stitch.min.js") 
     script.
       let stitchClient;
+      
       function initApplication() {
         console.log("Initted..");
         return stitch.StitchClientFactory.create('dontdoit-ntrbu').then(client => {
           stitchClient = client;
         }).then(() => {
-          stitchClient.authenticate("facebook");
+          
         });
+      }
+
+      function AuthFacebook() {
+        stitchClient.authenticate("facebook");
       }
