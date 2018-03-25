@@ -5,7 +5,7 @@ html
     link(rel='stylesheet', href='/stylesheets/style.css') 
   body(onload="initApplication()")
     block content
-    script(src="/javascripts/stitch.min.js")
+    script(src="/javascripts/stitch.min.js")  
     script.
       let stitchClient;
       // Disable Facebook Button
@@ -17,7 +17,7 @@ html
           stitchClient = client;
         }).then(() => {
           fbButton.disable = false;
-        }
+        });
       }
 
       function AuthFacebook() {
