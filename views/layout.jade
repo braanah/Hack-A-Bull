@@ -2,19 +2,22 @@ doctype html
 html
   head
     title=title
-    link(rel='stylesheet', href='/stylesheets/style.css')
-    script(src="/javascripts/stitch.min.js") 
+    link(rel='stylesheet', href='/stylesheets/style.css') 
   body(onload="initApplication()")
     block content
+    script(src="/javascripts/stitch.min.js")
     script.
       let stitchClient;
-      
+      // Disable Facebook Button
+      let fbButton = document.getElementById("fb_button");
+      fbButton.disable = true;
       function initApplication() {
         console.log("Initted..");
         return stitch.StitchClientFactory.create('dontdoit-ntrbu').then(client => {
           stitchClient = client;
         }).then(() => {
-
+          fbButton.disable = false;
+        }
       }
 
       function AuthFacebook() {
